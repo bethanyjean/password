@@ -1,4 +1,5 @@
-var password = [];
+var passwordArray = [];
+var password = "";
 var length = 0;
 var upper = "";
 var upperCaseTxt = "upper case letters";
@@ -8,6 +9,11 @@ var number = "";
 var numberTxt = "numbers";
 var special = "";
 var specialCharTxt = "special characters";
+var allUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var allLower = "abcdefghijklmnopqrstuvwxyz";
+var allNum = "1234567890";
+var allChar = "!#$%&()*+,-./:;<>=@?[]^_{}|~";
+var fullArray = "";
 
 // ask user for the different parameters of the password
 
@@ -42,11 +48,41 @@ var makeChoices = function(attributeTxt) {
         (window.alert("Please enter a valid response: Y/N"));
         makeChoices(attribute, attributeTxt);
     }
-    return attribute;
+    return attribute.toLowerCase();
 }
 
+//create the full choice of password characters
+
+var makeArray = function() {
+    if (upper == "y") {
+        fullArray = fullArray + allUpper;
+    };
+    if (lower == "y") {
+        fullArray = fullArray + allLower;
+    };
+    if (number == "y") {
+        fullArray = fullArray + allNum;
+    };
+    if (special == "y") {
+        fullArray = fullArray + allChar;
+    };
+}
+
+//function to create password
+
+// function createPassword(length) {
+//     for (var i = 0; i < length, i++) {
+
+//     }
+//     password = toString(passwordArray);
+// }
+
+
 passwordLength();
+console.log(fullArray);
 var upper = makeChoices(upperCaseTxt);
 var lower = makeChoices(lowerCaseTxt);
 var number = makeChoices(numberTxt);
 var special = makeChoices(specialCharTxt);
+makeArray();
+
