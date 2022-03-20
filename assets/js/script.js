@@ -14,8 +14,23 @@ var allLower = "abcdefghijklmnopqrstuvwxyz";
 var allNum = "1234567890";
 var allChar = "!#$%&()*+,-./:;<>=@?[]^_{}|~";
 var fullArray = "";
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 
 // ask user for the different parameters of the password
+
+var makeChoices = function() {
+    passwordLength();
+    upper = makeChoice(upperCaseTxt);
+    lower = makeChoice(lowerCaseTxt);
+    number = makeChoice(numberTxt);
+    special = makeChoice(specialCharTxt);
+    //make sure one attribute was chosen
+    if (upper == "n" && lower == "n" && number == "n" && special == "n"){
+        window.alert("You must choose at least one requirement.");
+        makeChoices();
+    }
+}
 
 // ask for the password and check the length of the password
 
@@ -23,7 +38,6 @@ var passwordLength = function() {
     length = window.prompt("How long would you like your password?");
     if (length < 8 || length > 128) {
         window.alert("Your password must be between 8 and 128 characters.");
-        console.log(length)
         passwordLength();
     };
     //verify user's entry
@@ -34,7 +48,7 @@ var passwordLength = function() {
 
 // Choose and verify other attributes
 
-var makeChoices = function(attributeTxt) {
+var makeChoice = function(attributeTxt) {
     var attribute = window.prompt("Do you want your password to contain " + attributeTxt + "? Y/N");
     if (attribute.toLowerCase() === 'y') {
         if (confirm("You want to include " + attributeTxt + " in your password")== false) {
@@ -43,10 +57,11 @@ var makeChoices = function(attributeTxt) {
     } else if(attribute.toLocaleLowerCase() === 'n'){
         if (confirm("You DO NOT want to include " + attributeTxt + " in your password")== false) {
             attribute = 'y'
+            window.alert("Your password WILL contain " + attributeTxt);
         };
     } else {
         (window.alert("Please enter a valid response: Y/N"));
-        makeChoices(attribute, attributeTxt);
+        makeChoice(attributeTxt);
     }
     return attribute.toLowerCase();
 }
@@ -70,19 +85,24 @@ var makeArray = function() {
 
 //function to create password
 
-// function createPassword(length) {
-//     for (var i = 0; i < length, i++) {
+function generatePassword() {
+    makeChoices();
+    makeArray();
+    for (var i = 0; i < length; i++) {
+        passwordArray[i] = fullArray[Math.floor(Math.random() * fullArray.length)];
+    }
+    return passwordArray.join("");
+}
 
-//     }
-//     password = toString(passwordArray);
-// }
 
 
-passwordLength();
-console.log(fullArray);
-var upper = makeChoices(upperCaseTxt);
-var lower = makeChoices(lowerCaseTxt);
-var number = makeChoices(numberTxt);
-var special = makeChoices(specialCharTxt);
-makeArray();
-
+// Write password to the #password input
+function writePassword() {
+    password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  
+  }
+  
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);

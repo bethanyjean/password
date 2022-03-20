@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Password Generator</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-    <!-- text to display on page -->
-    <h1>
-        Random Password Generator
-    </h1>
-    <!-- Eventually I want to figure out how to make this show up using classes. Not enough time. 
-        <h2>
-        Your Password is based on the following criteria:
-    </h2>
-    <div class="criterion">
-        <div class="criteria" input answer="0" criteria-type="length">Length: </div>
-        <div class="criteria" input answer="Y" criteria-type="upper">Uses Uppercase Letters: </div>
-        <div class="criteria" input answer="Y" criteria-type="lower">Uses Lowercase Letters: </div>
-        <div class="criteria" input answer="Y" criteria-type="number">Uses Numbers: </div>
-        <div class="criteria" input answer="Y" criteria-type="special">Uses Special Characters: </div>
-    </div> -->
-
-    
-    <!-- link to javaScript file -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Password Generator</h1>
+      </header>
+      <div class="card">
+        <div class="card-header">
+          <h2>Generate a Password</h2>
+        </div>
+        <div class="card-body">
+          <textarea
+            readonly
+            id="password"
+            placeholder="Your Secure Password"
+            aria-label="Generated Password"
+          ></textarea>
+        </div>
+        <div class="card-footer">
+          <button id="generate" class="btn">Generate Password</button>
+        </div>
+      </div>
+    </div>
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
