@@ -36,10 +36,14 @@ var makeChoices = function() {
 
 var passwordLength = function() {
     length = window.prompt("How long would you like your password?");
+    if (isNaN(length)) {
+        window.alert("Please enter a number between 8 and 128");
+        passwordLength();
+    }
     if (length < 8 || length > 128) {
         window.alert("Your password must be between 8 and 128 characters.");
         passwordLength();
-    };
+    }
     //verify user's entry
     if (confirm("Do you want your password to be " + length + " characters long?") == false) {
         passwordLength();
